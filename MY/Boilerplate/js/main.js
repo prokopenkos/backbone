@@ -9,6 +9,9 @@ var Song = Backbone.Model.extend({
     },
     defaults:{
         genre: "Jazz"
+    },
+    validate: function(attr){
+        if(!attr.name) return 'Name is required'
     }
 });
 
@@ -21,3 +24,20 @@ song.set("title", "Blue in Green");
 console.log(song.get("artist"));
 song.set({artist: "TestArtist"})
 console.log(song.get("artist"));
+
+console.log(song.isValid());
+console.log(song.validationError);
+
+let Animal = Backbone.Model.extend({
+    walk: function(){
+        console.log('Animal walking ...');
+    }
+})
+
+let Dog =  Animal.extend({
+    walk: function(){
+        console.log('Dog walking ...');
+    }
+});
+let dog = new Dog();
+dog.walk();
